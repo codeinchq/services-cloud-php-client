@@ -9,8 +9,6 @@ on:
 jobs:
   phpunit:
     runs-on: ubuntu-latest
-    env:
-      SERVICES_CLOUD_API_KEY: ${{ secrets.SERVICES_CLOUD_API_KEY }}
     steps:
       # Check out the code
       - name: Checkout code
@@ -27,9 +25,8 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Debug environment
-        run: printenv | grep SERVICES_CLOUD_API_KEY
-
       # Run tests
       - name: Run tests
+        env:
+          SERVICES_CLOUD_API_KEY: ${{ secrets.SERVICES_CLOUD_API_KEY }}
         run: vendor/bin/phpunit tests
