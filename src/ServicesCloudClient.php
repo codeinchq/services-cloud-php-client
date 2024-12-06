@@ -16,8 +16,6 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\VarDumper\Caster\TraceStub;
-use Symfony\Component\VarDumper\Command\Descriptor\DumpDescriptorInterface;
 
 /**
  * ServicesCloud API client. This library allows you to interact with the Service Cloud API. It provides a simple way to
@@ -68,6 +66,7 @@ class ServicesCloudClient implements ClientInterface
         if (!filter_var($apiUrl, FILTER_VALIDATE_URL)) {
             throw new Exception('The API URL is not valid.');
         }
+        $this->apiUrl = $apiUrl;
 
         $this->client = $client ?? Psr18ClientDiscovery::find();
     }
