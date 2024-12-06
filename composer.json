@@ -1,5 +1,5 @@
 {
-  "name": "codeinc/services-cloud-php-client",
+  "name": "codeinc/services-cloud-client",
   "version": "v1.0",
   "description": "A PHP client for the Cervices Cloud API",
   "homepage": "https://github.com/codeinchq/services-cloud-php-client",
@@ -9,10 +9,9 @@
     "php": ">=8.3",
     "php-http/discovery": "^1.19",
     "psr/http-client": "^1.0",
-    "php-http/multipart-stream-builder": "^1.3",
-    "codeinc/office2pdf-client": "^1.4",
-    "codeinc/pdf2img-client": "^1.5",
-    "codeinc/pdf2txt-client": "^1.5"
+    "codeinc/office2pdf-client": "^1",
+    "codeinc/pdf2img-client": "^1",
+    "codeinc/pdf2txt-client": "^1"
   },
   "autoload": {
     "psr-4": {

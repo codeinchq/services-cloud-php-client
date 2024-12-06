@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b2f4c74ad2c029d07a39e4bd481a2a0",
+    "content-hash": "c9d3c0210cca345ec454647fde79181b",
     "packages": [
         {
             "name": "codeinc/office2pdf-client",
-            "version": "v1.4",
+            "version": "v1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeinchq/office2pdf-php-client.git",
-                "reference": "0092a307ab6218952f0388fcc7d9e5c5b1258dd9"
+                "reference": "65ee85332cc8ed08bb326eab9cfb9d3e58aa4160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeinchq/office2pdf-php-client/zipball/0092a307ab6218952f0388fcc7d9e5c5b1258dd9",
-                "reference": "0092a307ab6218952f0388fcc7d9e5c5b1258dd9",
+                "url": "https://api.github.com/repos/codeinchq/office2pdf-php-client/zipball/65ee85332cc8ed08bb326eab9cfb9d3e58aa4160",
+                "reference": "65ee85332cc8ed08bb326eab9cfb9d3e58aa4160",
                 "shasum": ""
             },
             "require": {
@@ -53,22 +53,22 @@
             "homepage": "https://github.com/codeinchq/office2pdf-php-client",
             "support": {
                 "issues": "https://github.com/codeinchq/office2pdf-php-client/issues",
-                "source": "https://github.com/codeinchq/office2pdf-php-client/tree/v1.4"
+                "source": "https://github.com/codeinchq/office2pdf-php-client/tree/v1.8"
             },
-            "time": "2024-02-24T01:26:02+00:00"
+            "time": "2024-12-06T01:48:20+00:00"
         },
         {
             "name": "codeinc/pdf2img-client",
-            "version": "v1.5",
+            "version": "v1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeinchq/pdf2img-php-client.git",
-                "reference": "090c9f1a14083c5f4daaf23eeb64436be4de8da1"
+                "reference": "b56ce4866ad117cfef293ecd63a917fe98d85ef2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeinchq/pdf2img-php-client/zipball/090c9f1a14083c5f4daaf23eeb64436be4de8da1",
-                "reference": "090c9f1a14083c5f4daaf23eeb64436be4de8da1",
+                "url": "https://api.github.com/repos/codeinchq/pdf2img-php-client/zipball/b56ce4866ad117cfef293ecd63a917fe98d85ef2",
+                "reference": "b56ce4866ad117cfef293ecd63a917fe98d85ef2",
                 "shasum": ""
             },
             "require": {
@@ -104,22 +104,22 @@
             "homepage": "https://github.com/codeinchq/pdf2img-php-client",
             "support": {
                 "issues": "https://github.com/codeinchq/pdf2img-php-client/issues",
-                "source": "https://github.com/codeinchq/pdf2img-php-client/tree/v1.5"
+                "source": "https://github.com/codeinchq/pdf2img-php-client/tree/v1.8"
             },
-            "time": "2024-02-24T01:15:02+00:00"
+            "time": "2024-12-06T01:45:17+00:00"
         },
         {
             "name": "codeinc/pdf2txt-client",
-            "version": "v1.5",
+            "version": "v1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeinchq/pdf2txt-php-client.git",
-                "reference": "c814c1262eb552b8127dcb927841f799a21dba81"
+                "reference": "9d066dd53576e12f12e518597864e33d59aa1bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeinchq/pdf2txt-php-client/zipball/c814c1262eb552b8127dcb927841f799a21dba81",
-                "reference": "c814c1262eb552b8127dcb927841f799a21dba81",
+                "url": "https://api.github.com/repos/codeinchq/pdf2txt-php-client/zipball/9d066dd53576e12f12e518597864e33d59aa1bf8",
+                "reference": "9d066dd53576e12f12e518597864e33d59aa1bf8",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +155,9 @@
             "homepage": "https://github.com/codeinchq/pdf2txt-php-client",
             "support": {
                 "issues": "https://github.com/codeinchq/pdf2txt-php-client/issues",
-                "source": "https://github.com/codeinchq/pdf2txt-php-client/tree/v1.5"
+                "source": "https://github.com/codeinchq/pdf2txt-php-client/tree/v1.12"
             },
-            "time": "2024-02-24T01:28:42+00:00"
+            "time": "2024-12-06T01:51:39+00:00"
         },
         {
             "name": "php-http/discovery",
