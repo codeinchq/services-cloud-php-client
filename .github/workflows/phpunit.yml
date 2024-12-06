@@ -9,16 +9,6 @@ on:
 jobs:
   phpunit:
     runs-on: ubuntu-latest
-    env:
-      SERVICES_CLOUD_API_KEY: ${{ secrets.SERVICES_CLOUD_API_KEY }}
-
-    services:
-      # Define the Docker service
-      pdf2img:
-        image: codeinchq/pdf2img:latest
-        ports:
-          - 3000:3000
-
     steps:
       # Check out the code
       - name: Checkout code
@@ -37,4 +27,6 @@ jobs:
 
       # Run tests
       - name: Run tests
+        env:
+          SERVICES_CLOUD_API_KEY: ${{ secrets.SERVICES_CLOUD_API_KEY }}
         run: vendor/bin/phpunit tests
