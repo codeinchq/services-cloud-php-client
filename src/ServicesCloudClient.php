@@ -54,24 +54,18 @@ class ServicesCloudClient implements ClientInterface
         ?string $apiUrl = null,
         ?ClientInterface $client = null,
     ) {
-        if ($apiKey === null) {
-            if (empty($_ENV['SERVICES_CLOUD_API_KEY'])) {
-                var_dump($_ENV);
-                var_dump(getenv('SERVICES_CLOUD_API_KEY'));
-                throw new Exception(
-                    'The API key must be provided as an argument or configured in the SERVICES_CLOUD_API_KEY environment variable.'
-                );
-            }
-            $this->apiKey = $_ENV['SERVICES_CLOUD_API_KEY'];
-        } else {
-            if (empty($apiKey)) {
-                throw new Exception("The API key can not be empty.");
-            }
-            $this->apiKey = $apiKey;
+        // Sets the API key
+        $apiKey ??= getenv('SERVICES_CLOUD_API_KEY');
+        if (empty($apiKey)) {
+            throw new Exception(
+                'The API key must be provided as an argument or configured in the SERVICES_CLOUD_API_KEY environment variable.'
+            );
         }
+        $this->apiKey = $apiKey;
 
-        $this->apiUrl = $apiUrl ?? $_ENV['SERVICES_CLOUD_API_URL'] ?? self::DEFAULT_API_URL;
-        if (!filter_var($this->apiUrl, FILTER_VALIDATE_URL)) {
+        // Sets the API URL
+        $apiUrl ??= getenv('SERVICES_CLOUD_API_URL') ?: self::DEFAULT_API_URL;
+        if (!filter_var($apiUrl, FILTER_VALIDATE_URL)) {
             throw new Exception('The API URL is not valid.');
         }
 
@@ -150,9 +144,9 @@ class ServicesCloudClient implements ClientInterface
     public function checkServicesHealth(): array
     {
         return [
-            'office2pdf' => $this->office2Pdf()->checkServiceHealth(),
-            'pdf2img' => $this->pdf2img()->checkServiceHealth(),
-            'pdf2txt' => $this->pdf2txt()->checkServiceHealth(),
+            'office2pdf'  => $this->office2Pdf()->checkServiceHealth(),
+            'pdf2img'     => $this->pdf2img()->checkServiceHealth(),
+            'pdf2txt'     => $this->pdf2txt()->checkServiceHealth(),
             'watermarker' => $this->watermarker()->checkServiceHealth(),
         ];
     }
