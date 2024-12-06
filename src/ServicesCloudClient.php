@@ -17,6 +17,7 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\VarDumper\Caster\TraceStub;
+use Symfony\Component\VarDumper\Command\Descriptor\DumpDescriptorInterface;
 
 /**
  * ServicesCloud API client. This library allows you to interact with the Service Cloud API. It provides a simple way to
@@ -55,6 +56,8 @@ class ServicesCloudClient implements ClientInterface
     ) {
         if ($apiKey === null) {
             if (empty($_ENV['SERVICES_CLOUD_API_KEY'])) {
+                var_dump($_ENV);
+                var_dump(getenv('SERVICES_CLOUD_API_KEY'));
                 throw new Exception(
                     'The API key must be provided as an argument or configured in the SERVICES_CLOUD_API_KEY environment variable.'
                 );
