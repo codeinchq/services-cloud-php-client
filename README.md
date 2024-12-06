@@ -2,7 +2,7 @@
 
 This is a PHP client for the ServicesCloud API that allows you to access the services provided by Code Inc. through a simple and easy-to-use interface. 
 
-> **⚠️ Warning**   
+> [!CAUTION]
 > It is a work in progress and is not yet ready for production use.
 
 ## Available APIs
@@ -54,7 +54,7 @@ $response = $servicesCloudClient->pdf2Txt()->extract(/* a PDF stream */);
 
 ## Extra API
 
-> **⚠️ Warning**  
+> [!WARNING]  
 > By default API keys are not authorized to access the Gotenberg API. If you need access to the Gotenberg API, please contact Code Inc. to request authorization.
 
 The legacy Gotenberg v8 API can be accessed using the ServicesCloud client as the Gotenberg HTTP client.
