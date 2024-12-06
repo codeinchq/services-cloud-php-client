@@ -58,8 +58,26 @@ use CodeInc\ServicesCloud\ServicesCloudClient;
 // Create a new client
 $servicesCloudClient = new ServicesCloudClient('my api key');
 
-// Convert a stream using the Pdf2Txt API
+// Extract text using the Pdf2Txt API
 $response = $servicesCloudClient->pdf2Txt()->extract(/* a PDF stream */);
+```
+
+### Watermarker API
+
+This API allows you to add a watermark to a PDF document. For more information see [this documentation](https://github.com/codeinchq/watermarker-php-client?tab=readme-ov-file#usage).
+
+The Watermarker client can be accessed using:
+```php
+use CodeInc\ServicesCloud\ServicesCloudClient;
+
+// Create a new client
+$servicesCloudClient = new ServicesCloudClient('my api key');
+
+// Apply a watermark using the Watermarker API
+$response = $servicesCloudClient->watermarker()->apply(
+    /* an image stream*/, 
+    /* a PDF stream */
+);
 ```
 
 ### Gotenberg API (legacy)

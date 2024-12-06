@@ -11,6 +11,7 @@ namespace CodeInc\ServicesCloud;
 use CodeInc\Office2PdfClient\Office2PdfClient;
 use CodeInc\Pdf2ImgClient\Pdf2ImgClient;
 use CodeInc\Pdf2TxtClient\Pdf2TxtClient;
+use CodeInc\WatermarkerClient\WatermarkerClient;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
@@ -36,6 +37,7 @@ class ServicesCloudClient implements ClientInterface
     private ?Office2PdfClient $office2PdfClient = null;
     private ?Pdf2ImgClient $pdf2ImgClient = null;
     private ?Pdf2TxtClient $pdf2TxtClient = null;
+    private ?WatermarkerClient $watermarkerClient = null;
 
     /**
      * ServicesCloudClient constructor.
@@ -106,6 +108,18 @@ class ServicesCloudClient implements ClientInterface
     {
         $this->pdf2TxtClient ??= new Pdf2TxtClient("{$this->apiUrl}pdf2txt/", $this);
         return $this->pdf2TxtClient;
+    }
+
+    /**
+     * Returns the Watermarker client.
+     *
+     * @return WatermarkerClient
+     * @see https://github.com/codeinchq/watermarker-php-client
+     */
+    public function watermarker(): WatermarkerClient
+    {
+        $this->watermarkerClient ??= new WatermarkerClient("{$this->apiUrl}watermarker/", $this);
+        return new WatermarkerClient("{$this->apiUrl}watermarker/", $this);
     }
 
     /**
