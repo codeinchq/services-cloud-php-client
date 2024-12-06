@@ -16,6 +16,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\VarDumper\Caster\TraceStub;
 
 /**
  * ServicesCloud API client. This library allows you to interact with the Service Cloud API. It provides a simple way to
@@ -28,7 +29,7 @@ use Psr\Http\Message\ResponseInterface;
 class ServicesCloudClient implements ClientInterface
 {
     public const string DEFAULT_API_URL = self::EU_API_URL;
-    public const string EU_API_URL = 'https://services-cloud-v1-1-eu-byzteify.ew.gateway.dev/';
+    public const string EU_API_URL = 'https://services-cloud-v3-eu-byzteify.ew.gateway.dev';
     public const string US_API_URL = '';
 
     private readonly string $apiKey;
@@ -48,9 +49,9 @@ class ServicesCloudClient implements ClientInterface
      * @throws Exception If the API URL is not valid.
      */
     public function __construct(
-        string $apiKey = null,
-        string $apiUrl = null,
-        ClientInterface $client = null,
+        ?string $apiKey = null,
+        ?string $apiUrl = null,
+        ?ClientInterface $client = null,
     ) {
         if ($apiKey === null) {
             if (empty($_ENV['SERVICES_CLOUD_API_KEY'])) {
@@ -66,7 +67,7 @@ class ServicesCloudClient implements ClientInterface
             $this->apiKey = $apiKey;
         }
 
-        $this->apiUrl = $apiUrl ?? $_ENV['SERVICES_CLOUD_API_URL'] ?: self::DEFAULT_API_URL;
+        $this->apiUrl = $apiUrl ?? $_ENV['SERVICES_CLOUD_API_URL'] ?? self::DEFAULT_API_URL;
         if (!filter_var($this->apiUrl, FILTER_VALIDATE_URL)) {
             throw new Exception('The API URL is not valid.');
         }
@@ -82,7 +83,7 @@ class ServicesCloudClient implements ClientInterface
      */
     public function office2Pdf(): Office2PdfClient
     {
-        $this->office2PdfClient ??= new Office2PdfClient("{$this->apiUrl}office2pdf/", $this);
+        $this->office2PdfClient ??= new Office2PdfClient($this->getServiceUrl('office2pdf', 'v1'), $this);
         return $this->office2PdfClient;
     }
 
@@ -94,7 +95,7 @@ class ServicesCloudClient implements ClientInterface
      */
     public function pdf2img(): Pdf2ImgClient
     {
-        $this->pdf2ImgClient ??= new Pdf2ImgClient("{$this->apiUrl}pdf2img/", $this);
+        $this->pdf2ImgClient ??= new Pdf2ImgClient($this->getServiceUrl('pdf2img', 'v1'), $this);
         return $this->pdf2ImgClient;
     }
 
@@ -106,7 +107,7 @@ class ServicesCloudClient implements ClientInterface
      */
     public function pdf2txt(): Pdf2TxtClient
     {
-        $this->pdf2TxtClient ??= new Pdf2TxtClient("{$this->apiUrl}pdf2txt/", $this);
+        $this->pdf2TxtClient ??= new Pdf2TxtClient($this->getServiceUrl('pdf2txt', 'v1'), $this);
         return $this->pdf2TxtClient;
     }
 
@@ -118,8 +119,39 @@ class ServicesCloudClient implements ClientInterface
      */
     public function watermarker(): WatermarkerClient
     {
-        $this->watermarkerClient ??= new WatermarkerClient("{$this->apiUrl}watermarker/", $this);
-        return new WatermarkerClient("{$this->apiUrl}watermarker/", $this);
+        $this->watermarkerClient ??= new WatermarkerClient($this->getServiceUrl('watermarker', 'v1'), $this);
+        return $this->watermarkerClient;
+    }
+
+    /**
+     * Returns the API URL for a service.
+     *
+     * @param string $service
+     * @param string $version
+     * @return string
+     */
+    private function getServiceUrl(string $service, string $version): string
+    {
+        $url = $this->apiUrl;
+        if (!str_ends_with($url, '/')) {
+            $url .= '/';
+        }
+        return "$url$service/$version/";
+    }
+
+    /**
+     * Checks the health of the services.
+     *
+     * @return array
+     */
+    public function checkServicesHealth(): array
+    {
+        return [
+            'office2pdf' => $this->office2Pdf()->checkServiceHealth(),
+            'pdf2img' => $this->pdf2img()->checkServiceHealth(),
+            'pdf2txt' => $this->pdf2txt()->checkServiceHealth(),
+            'watermarker' => $this->watermarker()->checkServiceHealth(),
+        ];
     }
 
     /**
@@ -127,8 +159,8 @@ class ServicesCloudClient implements ClientInterface
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        $request = $request->withHeader('X-Api-Key', $this->apiKey);
-
-        return $this->client->sendRequest($request);
+        return $this->client->sendRequest(
+            $request->withHeader('X-Api-Key', $this->apiKey)
+        );
     }
 }

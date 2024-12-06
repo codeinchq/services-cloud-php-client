@@ -1,0 +1,1 @@
+{"version":1,"defects":{"CodeInc\\ServicesCloud\\Tests\\ServicesCloudClientTest::testHealth":7},"times":{"CodeInc\\ServicesCloud\\Tests\\ServicesCloudClientTest::testHealth":1.656,"CodeInc\\ServicesCloud\\Tests\\ServicesCloudClientTest::testHealthInvalidKey":0.779,"CodeInc\\ServicesCloud\\Tests\\ServicesCloudClientTest::testHealthInvalidUrl":0.219}}
