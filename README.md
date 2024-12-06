@@ -16,7 +16,7 @@ use CodeInc\ServicesCloud\ServicesCloudClient;
 $servicesCloudClient = new ServicesCloudClient('my api key');
 
 // Convert a stream using the Office2Pdf API
-$response = $servicesCloudClient->office2Pdf()->convert(/* a stream */);
+$response = $servicesCloudClient->office2Pdf()->convert(/* an Office stream */);
 ```
 
 ### Pdf2Img
@@ -31,7 +31,7 @@ use CodeInc\ServicesCloud\ServicesCloudClient;
 $servicesCloudClient = new ServicesCloudClient('my api key');
 
 // Convert a stream using the Pdf2Img API
-$response = $servicesCloudClient->pdf2Img()->convert(/* a stream */);
+$response = $servicesCloudClient->pdf2Img()->convert(/* a PDF stream */);
 ```
 
 ### Pdf2Txt
@@ -46,7 +46,7 @@ use CodeInc\ServicesCloud\ServicesCloudClient;
 $servicesCloudClient = new ServicesCloudClient('my api key');
 
 // Convert a stream using the Pdf2Txt API
-$response = $servicesCloudClient->pdf2Txt()->convert(/* a stream */);
+$response = $servicesCloudClient->pdf2Txt()->extract(/* a PDF stream */);
 ```
 
 ## Extra API
@@ -63,7 +63,7 @@ use Gotenberg\Stream;
 use CodeInc\ServicesCloud\ServicesCloudClient;
 
 $response = Gotenberg::send(
-    Gotenberg::libreOffice('https://gotenberg-v8-eu-byzteify.ew.gateway.dev')->convert(/* a stream */),
+    Gotenberg::libreOffice('https://gotenberg-v8-eu-byzteify.ew.gateway.dev')->convert(/* an Office stream */),
     new ServicesCloudClient('my api key')
 );
 ```
