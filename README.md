@@ -1,5 +1,6 @@
 # Code Inc.'s ServicesCloud PHP client
 
+[![Code Inc.](https://img.shields.io/badge/Code%20Inc.-Services%20Cloud-blue)](https://www.codeinc.co)
 ![Tests](https://github.com/codeinchq/services-cloud-php-client/actions/workflows/phpunit.yml/badge.svg)
 
 This is a PHP client for the ServicesCloud API that allows you to access the services provided by Code Inc. through a simple and easy-to-use interface. 
